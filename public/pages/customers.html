@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>খরিদ্দার তালিকা — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="flex-between">
+      <h1 class="t-h1" data-i18n="customers_title">খরিদ্দার তালিকা</h1>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-open-add-cust" data-i18n="add_customer">+ নতুন খরিদ্দার</button>
+    </div>
+
+    <div class="search-box">
+      <span class="search-icon-left">🔍</span>
+      <input type="text" class="input" id="cust-search" data-i18n-placeholder="search_customer" placeholder="নাম, এলাকা বা মোবাইল..." />
+      <button type="button" class="search-mic-btn" id="cust-voice-btn">🎤</button>
+    </div>
+
+    <div class="chip-row no-scrollbar" id="cust-filters">
+      <button type="button" class="chip active" data-filter="all">সব খরিদ্দার</button>
+      <button type="button" class="chip chip-red" data-filter="due">বাকিদার</button>
+      <button type="button" class="chip chip-red" data-filter="overdue">জরুরি তাগাদা (>১৫ দিন)</button>
+      <button type="button" class="chip" data-filter="settled">শূন্য বাকি</button>
+    </div>
+
+    <div class="stack-sm" id="cust-list"></div>
+  </main>
+
+  <div class="modal-overlay hidden" id="add-cust-modal">
+    <div class="modal-sheet">
+      <div class="flex-between">
+        <h2 class="t-h2">নতুন খরিদ্দার যোগ করুন</h2>
+        <button type="button" class="icon-btn" id="close-add-cust">✕</button>
+      </div>
+      <form id="add-cust-form" class="stack-md">
+        <div class="form-group">
+          <label class="form-label" for="nc-name">খরিদ্দারের নাম *</label>
+          <input id="nc-name" class="input" required placeholder="যেমন: সামী" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="nc-area">চেনার উপায় / এলাকা (একই নামের জন্য দরকারি)</label>
+          <input id="nc-area" class="input" placeholder="যেমন: উত্তরপাড়া / রিকশা গ্যারেজ" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="nc-alias">ডাকনাম / বিকল্প নাম (ঐচ্ছিক)</label>
+          <input id="nc-alias" class="input" placeholder="যেমন: সামী ভাই / ছোট সামী" />
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label" for="nc-phone">মোবাইল নম্বর</label>
+            <input id="nc-phone" type="tel" class="input t-num" placeholder="017XXXXXXXX" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="nc-opening">আগের বাকি (৳)</label>
+            <input id="nc-opening" type="number" class="input t-num" value="0" min="0" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">খরিদ্দার সংরক্ষণ করুন</button>
+      </form>
+    </div>
+  </div>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/customers.js"></script>
+</body>
+</html>

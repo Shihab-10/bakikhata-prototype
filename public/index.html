@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>বাকির খাতা — লগইন</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/pages/auth.css" />
+</head>
+<body>
+  <main class="app-main no-header no-bottom-nav">
+    <div class="flex-between">
+      <span class="badge badge-green"><span class="status-dot online"></span> <span id="login-mode-badge">অফলাইন-সক্ষম অ্যাপ</span></span>
+      <div class="flex-row">
+        <button type="button" class="icon-btn" id="login-lang-btn">EN</button>
+        <button type="button" class="icon-btn" data-theme-toggle>🌙</button>
+      </div>
+    </div>
+
+    <div class="auth-hero">
+      <div class="auth-logo-box">খ</div>
+      <h1 class="t-h1" id="login-title">বাকির খাতা — ডিজিটাল লেজার</h1>
+      <p class="t-body text-muted" id="login-subtitle">সহজ বাকি-জমার হিসাব, ভয়েস এন্ট্রি ও ফ্রি এসএমএস তাগাদা</p>
+    </div>
+
+    <div class="card stack-md">
+      <div>
+        <h2 class="t-h2" id="login-card-title">মার্চেন্ট লগইন</h2>
+        <p class="t-caption" id="login-card-sub">মোবাইল নম্বর ও পাসওয়ার্ড দিয়ে প্রবেশ করুন</p>
+      </div>
+
+      <form id="login-form" class="stack-md">
+        <div class="form-group">
+          <label class="form-label" for="login-phone" id="lbl-phone">মোবাইল নম্বর</label>
+          <div class="phone-group">
+            <div class="phone-prefix">🇧🇩 বাংলাদেশ</div>
+            <input id="login-phone" type="tel" class="input t-num" placeholder="01712-987654" value="" maxlength="14" autocomplete="username" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password" id="lbl-password">পাসওয়ার্ড</label>
+          <input id="login-password" type="password" class="input" placeholder="কমপক্ষে ৮ অক্ষর" value="" autocomplete="current-password" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="btn-send-otp">লগইন করুন →</button>
+        <button type="button" class="btn btn-outline btn-block" id="btn-demo-login">ডেমো দোকানে প্রবেশ করুন (রহিম জেনারেল স্টোর)</button>
+        <p class="t-caption">ডেমো অ্যাকাউন্ট: 01712987654 / Demo@12345</p>
+      </form>
+
+      <div class="divider-text" id="login-or">অথবা</div>
+
+      <div class="stack-sm google-auth-panel">
+        <div id="google-signin-button" class="google-signin-button" aria-label="Sign in with Google"><button type="button" class="btn btn-secondary btn-block" disabled>Firebase Google Sign-In প্রস্তুত করা হচ্ছে…</button></div>
+        <p id="google-auth-status" class="t-caption google-auth-status" role="status" aria-live="polite">Firebase Google Sign-In প্রস্তুত করা হচ্ছে…</p>
+        <a href="./pages/register.html" class="btn btn-amber btn-block">🏪 মোবাইল নম্বর দিয়ে নতুন দোকান খুলুন</a>
+      </div>
+
+      <section id="google-onboarding" class="google-onboarding" hidden aria-labelledby="google-onboarding-title">
+        <div class="google-onboarding-head">
+          <span class="google-success-icon" aria-hidden="true">✓</span>
+          <div>
+            <h3 id="google-onboarding-title" class="t-h2">Google account verified</h3>
+            <p id="google-profile-label" class="t-caption"></p>
+          </div>
+        </div>
+        <p class="t-caption">প্রথমবার ব্যবহারের জন্য আপনার দোকানের তথ্য দিন। Google password আমাদের কাছে সংরক্ষিত হয় না।</p>
+        <form id="google-onboarding-form" class="stack-md">
+          <div class="form-group">
+            <label class="form-label" for="google-phone">দোকানের যোগাযোগ নম্বর</label>
+            <input id="google-phone" class="input t-num" type="tel" inputmode="numeric" autocomplete="tel" placeholder="01XXXXXXXXX" maxlength="14" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="google-shop-name">দোকানের নাম</label>
+            <input id="google-shop-name" class="input" type="text" autocomplete="organization" placeholder="যেমন: রহিম জেনারেল স্টোর" minlength="2" maxlength="180" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="google-address">দোকানের ঠিকানা (ঐচ্ছিক)</label>
+            <input id="google-address" class="input" type="text" autocomplete="street-address" placeholder="এলাকা, উপজেলা, জেলা" maxlength="255" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="google-business-type">দোকানের ধরন</label>
+            <select id="google-business-type" class="input">
+              <option value="grocery">মুদি দোকান</option>
+              <option value="stationery">স্টেশনারি</option>
+              <option value="general">জেনারেল স্টোর</option>
+              <option value="other">অন্যান্য</option>
+            </select>
+          </div>
+          <p id="google-onboarding-error" class="google-form-error" role="alert" hidden></p>
+          <button type="submit" class="btn btn-primary btn-block" id="btn-google-create-shop">Google দিয়ে অ্যাকাউন্ট তৈরি করুন →</button>
+          <button type="button" class="btn btn-outline btn-block" id="btn-google-cancel">বাতিল করুন</button>
+        </form>
+      </section>
+    </div>
+
+    <div class="card-low flex-between">
+      <div>
+        <div class="t-label">🔒 আপনার দোকানের হিসাব সুরক্ষিত রাখুন</div>
+        <div class="t-caption">ইন্টারনেট পেলে আপনার দোকানের হিসাব সার্ভারে সিঙ্ক হবে</div>
+      </div>
+      <span class="badge badge-green">v1.0</span>
+    </div>
+  </main>
+  <script type="module" src="./js/pages/login.js"></script>
+</body>
+</html>

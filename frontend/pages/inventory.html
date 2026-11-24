@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>স্টক ও ইনভেন্টরি — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="flex-between">
+      <h1 class="t-h1">স্টক ও ইনভেন্টরি</h1>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-add-prod">+ নতুন পণ্য</button>
+    </div>
+
+    <div class="grid-3">
+      <div class="card stack-xs"><span class="t-caption">মোট পণ্য</span><span class="t-h1 text-emerald" id="inv-total">০</span></div>
+      <div class="card stack-xs"><span class="t-caption">কম স্টক</span><span class="t-h1 text-red" id="inv-low">০</span></div>
+      <div class="card stack-xs"><span class="t-caption">পাইকারি মূল্য</span><span class="t-h2 t-num" id="inv-val">৳০</span></div>
+    </div>
+
+    <div class="chip-row">
+      <button type="button" class="chip active" data-inv="all">সব পণ্য</button>
+      <button type="button" class="chip chip-red" data-inv="low">দ্রুত অর্ডার প্রয়োজন</button>
+    </div>
+
+    <div class="stack-sm" id="inv-list"></div>
+  </main>
+
+  <div class="modal-overlay hidden" id="add-prod-modal">
+    <div class="modal-sheet">
+      <div class="flex-between">
+        <h2 class="t-h2">নতুন পণ্য যোগ করুন</h2>
+        <button type="button" class="icon-btn" id="close-prod-modal">✕</button>
+      </div>
+      <form id="add-prod-form" class="stack-md">
+        <div class="form-group"><label class="form-label">পণ্যের নাম *</label><input id="np-name" class="input" required placeholder="যেমন: নাজিরশাইল চাল" /></div>
+        <div class="grid-2">
+          <div class="form-group"><label class="form-label">একক (Unit)</label><input id="np-unit" class="input" value="কেজি" /></div>
+          <div class="form-group"><label class="form-label">বর্তমান স্টক</label><input id="np-stock" type="number" class="input t-num" value="10" /></div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group"><label class="form-label">ক্রয় দর (৳)</label><input id="np-buy" type="number" class="input t-num" value="65" /></div>
+          <div class="form-group"><label class="form-label">বিক্রয় দর (৳)</label><input id="np-sell" type="number" class="input t-num" value="72" /></div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">পণ্য সংরক্ষণ করুন</button>
+      </form>
+    </div>
+  </div>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/inventory.js"></script>
+</body>
+</html>

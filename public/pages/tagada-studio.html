@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>তাগাদা স্টুডিও — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <h1 class="t-h1">তাগাদা স্টুডিও (SMS ও ভয়েস)</h1>
+
+    <div class="card grid-2">
+      <div class="card-low"><span class="t-caption">ভয়েস কল ক্রেডিট</span><div class="t-h1 text-emerald" id="tg-voice-bal">১২৫</div></div>
+      <div class="card-low"><span class="t-caption">বাংলা SMS ক্রেডিট</span><div class="t-h1 text-emerald" id="tg-sms-bal">১,৪৫০</div></div>
+    </div>
+
+    <div class="card stack-sm">
+      <div class="flex-between">
+        <h2 class="t-h2">উৎসব ও সাপ্তাহিক টেমপ্লেট</h2>
+        <span class="badge badge-amber">বাংলা SMS</span>
+      </div>
+      <p class="t-body" id="tg-preview-text">"আসসালামু আলাইকুম, রহিম জেনারেল স্টোরে আপনার পূর্বের বাকি দ্রুত পরিশোধের অনুরোধ রইল।"</p>
+      <div class="chip-row no-scrollbar">
+        <button type="button" class="chip active" data-tpl="eid">রমজান ও ঈদ</button>
+        <button type="button" class="chip" data-tpl="haat">সাপ্তাহিক হাট</button>
+        <button type="button" class="chip" data-tpl="harvest">ফসল মৌসুম</button>
+      </div>
+    </div>
+
+    <div class="stack-sm">
+      <h2 class="t-h2">বকেয়া খরিদ্দার তালিকা</h2>
+      <div class="stack-sm" id="tg-queue"></div>
+    </div>
+  </main>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/tagada-studio.js"></script>
+</body>
+</html>

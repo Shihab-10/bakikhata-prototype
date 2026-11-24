@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>নতুন দোকান রেজিস্টার — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/auth.css" />
+</head>
+<body>
+  <main class="app-main no-header no-bottom-nav">
+    <div class="flex-between">
+      <a href="../index.html" class="btn btn-secondary btn-sm">← লগইন</a>
+      <button type="button" class="icon-btn" data-theme-toggle>🌙</button>
+    </div>
+
+    <div class="card stack-md">
+      <div class="step-track">
+        <span class="step-dot active">১</span>
+        <span class="t-label">দোকানের তথ্য</span>
+        <span class="badge badge-green">নতুন দোকান অ্যাকাউন্ট</span>
+      </div>
+
+      <h1 class="t-h1">নতুন দোকান চালু করুন</h1>
+      <form id="register-form" class="stack-md">
+        <div class="form-group">
+          <label class="form-label" for="reg-shop">দোকানের নাম *</label>
+          <input id="reg-shop" class="input" required placeholder="যেমন: রহিম এন্টারপ্রাইজ" value="রহিম জেনারেল স্টোর" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-owner">মালিকের নাম *</label>
+          <input id="reg-owner" class="input" required placeholder="আপনার নাম" value="আব্দুর রহিম" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-category">ব্যবসার ধরন</label>
+          <select id="reg-category" class="select">
+            <option value="grocery">মুদি ও স্টেশনারি দোকান</option>
+            <option value="tong">চা-বিস্কুট / টং দোকান</option>
+            <option value="pharmacy">ফার্মেসি</option>
+            <option value="hardware">হার্ডওয়্যার ও সিমেন্ট</option>
+            <option value="wholesale">পাইকারি আড়ত</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-phone">মোবাইল নম্বর *</label>
+          <input id="reg-phone" type="tel" class="input t-num" required maxlength="14" placeholder="01XXXXXXXXX" autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-password">পাসওয়ার্ড *</label>
+          <input id="reg-password" type="password" class="input" required minlength="8" placeholder="কমপক্ষে ৮ অক্ষর" autocomplete="new-password" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-address">ঠিকানা / বাজার</label>
+          <input id="reg-address" class="input" placeholder="যেমন: সদর বাজার, ফেনী" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="register-submit">দোকান চালু করুন →</button>
+      </form>
+    </div>
+  </main>
+  <script type="module" src="../js/pages/register.js"></script>
+</body>
+</html>

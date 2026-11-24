@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>মহাজন খাতা — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="flex-between">
+      <h1 class="t-h1" data-i18n="suppliers_title">মহাজন ও পাইকার খাতা</h1>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-add-sup" data-i18n="add_supplier">+ নতুন মহাজন</button>
+    </div>
+
+    <div class="card card-stripe stripe-red flex-between">
+      <div>
+        <div class="t-caption" data-i18n="total_payable">মোট মহাজন দেনা</div>
+        <div class="t-display text-red" id="sup-total-payable">৳০</div>
+      </div>
+      <span class="badge badge-red" id="sup-count">০ জন</span>
+    </div>
+
+    <div class="stack-sm" id="sup-list"></div>
+  </main>
+
+  <div class="modal-overlay hidden" id="sup-tx-modal">
+    <div class="modal-sheet">
+      <div class="flex-between"><h2 class="t-h2" id="sup-modal-title">মহাজন হিসাব</h2><button type="button" class="icon-btn" id="close-sup-modal">✕</button></div>
+      <form id="sup-tx-form" class="stack-md">
+        <div class="form-group"><label class="form-label">ধরন</label>
+          <select id="sup-tx-type" class="select">
+            <option value="supplier_paid">টাকা পরিশোধ করলাম (− দেনা)</option>
+            <option value="purchase_credit">নতুন মাল বাকিতে আনলাম (+ দেনা)</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">টাকা (৳)</label><input id="sup-tx-amt" type="number" class="input t-num" required min="1" /></div>
+        <div class="form-group"><label class="form-label">চালান নং / বিবরণ</label><input id="sup-tx-note" class="input" placeholder="বিকাশ পরিশোধ বা চালান #102" /></div>
+        <button type="submit" class="btn btn-primary btn-block">সংরক্ষণ করুন</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay hidden" id="add-sup-modal">
+    <div class="modal-sheet">
+      <div class="flex-between"><h2 class="t-h2">নতুন মহাজন যোগ করুন</h2><button type="button" class="icon-btn" id="close-add-sup">✕</button></div>
+      <form id="add-sup-form" class="stack-md">
+        <div class="form-group"><label class="form-label">প্রতিষ্ঠানের নাম *</label><input id="ns-company" class="input" required /></div>
+        <div class="grid-2">
+          <div class="form-group"><label class="form-label">মোবাইল</label><input id="ns-phone" type="tel" class="input t-num" /></div>
+          <div class="form-group"><label class="form-label">আগের দেনা (৳)</label><input id="ns-payable" type="number" class="input t-num" value="0" min="0" /></div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">মহাজন যোগ করুন</button>
+      </form>
+    </div>
+  </div>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/suppliers.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>ক্যাশ খাতা ও লাভ-ক্ষতি — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="flex-between">
+      <h1 class="t-h1">ক্যাশ খাতা ও লাভ-লোকসান</h1>
+      <button type="button" class="btn btn-danger btn-sm" id="btn-add-exp">+ খরচ লিখুন</button>
+    </div>
+
+    <div class="card stack-sm">
+      <div class="flex-between">
+        <span class="t-label">নিট ব্যবসায়িক স্থিতি (Net Cash Flow)</span>
+        <span class="badge badge-green">লাইভ হিসাব</span>
+      </div>
+      <div class="t-display text-emerald" id="pnl-net">৳০</div>
+      <div class="grid-2">
+        <div class="card-low"><span class="t-caption">মোট নগদ জমা</span><div class="t-h2 text-emerald t-num" id="pnl-in">৳০</div></div>
+        <div class="card-low"><span class="t-caption">মোট খরচ ও পরিশোধ</span><div class="t-h2 text-red t-num" id="pnl-out">৳০</div></div>
+      </div>
+    </div>
+
+    <div class="card stack-md">
+      <div class="flex-between">
+        <h2 class="t-h2">ক্যাশ বাক্সের হিসাব (Cash Drawer)</h2>
+        <button type="button" class="btn btn-primary btn-sm" id="btn-reconcile">✓ ক্যাশ মেলান</button>
+      </div>
+      <div class="grid-3">
+        <div class="card-low"><span class="t-caption">সকালের ক্যাশ</span><div class="t-label t-num" id="cd-open">৳০</div></div>
+        <div class="card-low"><span class="t-caption">নগদ জমা (+)</span><div class="t-label text-emerald t-num" id="cd-in">৳০</div></div>
+        <div class="card-low"><span class="t-caption">ড্রয়ারে থাকা উচিত</span><div class="t-label text-emerald t-num" id="cd-close">৳০</div></div>
+      </div>
+    </div>
+
+    <div class="stack-sm">
+      <h2 class="t-h2">দোকানের খরচের খাত</h2>
+      <div class="stack-sm" id="exp-list"></div>
+    </div>
+  </main>
+
+  <div class="modal-overlay hidden" id="add-exp-modal">
+    <div class="modal-sheet">
+      <div class="flex-between">
+        <h2 class="t-h2">নতুন দোকান খরচ</h2>
+        <button type="button" class="icon-btn" id="close-exp-modal">✕</button>
+      </div>
+      <form id="add-exp-form" class="stack-md">
+        <div class="form-group">
+          <label class="form-label">খরচের খাত</label>
+          <select id="ex-cat" class="select">
+            <option value="দোকান ভাড়া ও বিদ্যুৎ বিল">দোকান ভাড়া ও বিদ্যুৎ বিল</option>
+            <option value="কর্মচারী বেতন">কর্মচারী বেতন</option>
+            <option value="চা-নাস্তা ও যাতায়াত">চা-নাস্তা ও যাতায়াত</option>
+            <option value="অন্যান্য দোকান খরচ">অন্যান্য দোকান খরচ</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">টাকা (৳)</label><input id="ex-amt" type="number" class="input t-num" required min="1" /></div>
+        <div class="form-group"><label class="form-label">বিবরণ</label><input id="ex-note" class="input" placeholder="যেমন: কারেন্ট বিল পরিশোধ" /></div>
+        <button type="submit" class="btn btn-danger btn-block">খরচ সংরক্ষণ করুন</button>
+      </form>
+    </div>
+  </div>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/cashbook-pnl.js"></script>
+</body>
+</html>

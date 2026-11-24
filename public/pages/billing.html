@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>সাবস্ক্রিপশন ও রিচার্জ — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <h1 class="t-h1">সাবস্ক্রিপশন ও SMS প্যাক</h1>
+
+    <div class="card stack-sm" style="background: var(--color-emerald); color: #fff;">
+      <span class="badge" style="background: rgba(255,255,255,0.2); color: #fff; width: fit-content;">সক্রিয় প্ল্যান</span>
+      <div class="t-h1" id="bill-plan-name">Business Pro</div>
+      <div class="t-caption" style="color: rgba(255,255,255,0.88);" id="bill-sms-left">বাকি SMS: ১,৪৫০ টি</div>
+    </div>
+
+    <div class="stack-sm">
+      <h2 class="t-h2">সহজ মাসিক প্যাকেজ</h2>
+      <div class="card flex-between">
+        <div><div class="t-h2">বেসিক খাতা</div><div class="t-caption">মাসে মাত্র ৳১০০ (ছোট দোকানের জন্য)</div></div>
+        <button type="button" class="btn btn-secondary btn-sm" data-pay="৳১০০ বেসিক প্ল্যান">বাছুন</button>
+      </div>
+      <div class="card flex-between">
+        <div><div class="t-h2">বিজনেস প্রো</div><div class="t-caption">মাসে ৳৩০০ (স্টক, মেমো ও মাল্টি-শাখা)</div></div>
+        <button type="button" class="btn btn-primary btn-sm" data-pay="৳৩০০ বিজনেস প্রো">আপগ্রেড</button>
+      </div>
+    </div>
+
+    <div class="card stack-sm">
+      <h2 class="t-h2">তাগাদা SMS প্যাক</h2>
+      <div class="grid-2">
+        <button type="button" class="btn btn-outline" data-pay="৫০০ SMS (৳১৭৫)">৫০০ SMS • ৳১৭৫</button>
+        <button type="button" class="btn btn-outline" data-pay="১,৫০০ SMS (৳৪৫০)">১,৫০০ SMS • ৳৪৫০</button>
+      </div>
+    </div>
+
+    <div class="card stack-sm">
+      <h2 class="t-h2">পেমেন্ট মাধ্যম (UI অপশন)</h2>
+      <div class="grid-3">
+        <button type="button" class="btn btn-danger btn-sm" data-gw="bKash">bKash</button>
+        <button type="button" class="btn btn-amber btn-sm" data-gw="Nagad">Nagad</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-gw="Card">Card/Bank</button>
+      </div>
+    </div>
+  </main>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/billing.js"></script>
+</body>
+</html>

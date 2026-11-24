@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>ব্যবসার টুলস ও মেনু — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="flex-between">
+      <h1 class="t-h1" data-i18n="more_tools_title">ব্যবসার টুলস ও মেনু</h1>
+      <span class="badge badge-green" id="more-mode-badge">সহজ মোড</span>
+    </div>
+
+    <div class="card-low flex-between">
+      <div>
+        <div class="t-label">মূল MVP: বাকি, জমা, গ্রাহক, ইতিহাস ও সিঙ্ক</div>
+        <div class="t-caption">নিচের কিছু অতিরিক্ত মডিউল শুধু UI demo; এগুলোর server sync, payment বা SMS integration এখনো চালু নয়।</div>
+      </div>
+      <a href="./settings.html" class="btn btn-secondary btn-sm">সেটিংস</a>
+    </div>
+
+    <div class="grid-2" id="tools-grid"></div>
+  </main>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/more-tools.js"></script>
+</body>
+</html>

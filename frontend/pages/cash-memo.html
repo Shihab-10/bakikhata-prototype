@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>ডিজিটাল ক্যাশ মেমো — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/memo.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="flex-between no-print">
+      <h1 class="t-h1">ডিজিটাল ক্যাশ মেমো (POS)</h1>
+      <button type="button" class="btn btn-secondary btn-sm" id="btn-print-memo">🖨️ প্রিন্ট</button>
+    </div>
+
+    <!-- Builder Card -->
+    <div class="card stack-md no-print" id="memo-builder">
+      <div class="form-group">
+        <label class="form-label">খরিদ্দার নির্বাচন করুন</label>
+        <select id="memo-customer" class="select"></select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">স্টক থেকে পণ্য যোগ করুন</label>
+        <div class="chip-row no-scrollbar" id="memo-product-chips"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">অতিরিক্ত আইটেম নাম</label>
+          <input id="custom-item-name" class="input" placeholder="যেমন: মশলা" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">দাম (৳)</label>
+          <div class="flex-row">
+            <input id="custom-item-price" type="number" class="input t-num" placeholder="100" />
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-add-custom">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="memo-cart-list" class="stack-xs"></div>
+
+      <div class="grid-3">
+        <div class="form-group">
+          <label class="form-label">ছাড় (৳)</label>
+          <input id="memo-discount" type="number" class="input t-num" value="0" min="0" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">ভ্যাট / মূসক (%)</label>
+          <input id="memo-vat" type="number" class="input t-num" value="0" min="0" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">নগদ জমা (৳)</label>
+          <input id="memo-paid" type="number" class="input t-num" value="0" min="0" />
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-block" id="btn-generate-memo">🧾 মেমো তৈরি ও খাতায় যোগ করুন</button>
+    </div>
+
+    <!-- Printable Receipt Preview -->
+    <div class="receipt-paper stack-sm" id="memo-receipt"></div>
+
+    <div class="grid-2 no-print">
+      <button type="button" class="btn btn-primary" id="btn-wa-memo">💬 হোয়াটসঅ্যাপ মেমো</button>
+      <button type="button" class="btn btn-outline" id="btn-bt-print">📡 ব্লুটুথ প্রিন্ট (UI)</button>
+    </div>
+  </main>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/cash-memo.js"></script>
+</body>
+</html>

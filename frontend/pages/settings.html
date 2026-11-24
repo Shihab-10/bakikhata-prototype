@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>সেটিংস — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/auth.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <h1 class="t-h1" data-i18n="settings_title">সেটিংস ও পছন্দসমূহ</h1>
+
+    <div class="card stack-md">
+      <div class="flex-between">
+        <div><div class="t-label">🌙 ডার্ক মোড (রাতের হিসাবের জন্য)</div><div class="t-caption">দিনের আলোতে লাইট মোড ও রাতে ডার্ক মোড</div></div>
+        <button type="button" class="switch" id="sw-theme" aria-checked="false"><span class="switch-thumb"></span></button>
+      </div>
+      <div class="flex-between">
+        <div><div class="t-label">🌐 ভাষা ও সংখ্যা (বাংলা ↔ English)</div><div class="t-caption">ডিফল্ট বাংলা সংখ্যা (৳৭,৪২০) বা English (৳7,420)</div></div>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-set-lang">বাংলা</button>
+      </div>
+      <div class="flex-between">
+        <div><div class="t-label">🧰 ব্যবসা প্রো টুলস (স্টক ও P&amp;L)</div><div class="t-caption">ড্যাশবোর্ডে স্টক, মেমো ও লাভ-ক্ষতি দেখাবে</div></div>
+        <button type="button" class="switch" id="sw-pro-mode" aria-checked="false"><span class="switch-thumb"></span></button>
+      </div>
+    </div>
+
+    <section class="card stack-sm" aria-labelledby="google-link-title">
+      <div>
+        <h2 class="t-h2" id="google-link-title">Google account সংযুক্ত করুন</h2>
+        <p class="t-caption">আপনার বর্তমান merchant account-এর সাথে Firebase-verified Google sign-in যুক্ত করুন। এরপর Google দিয়েও লগইন করতে পারবেন।</p>
+      </div>
+      <div id="google-link-button" class="google-signin-button"><button type="button" class="btn btn-secondary btn-block" disabled>Firebase Firebase Google Sign-In প্রস্তুত করা হচ্ছে…</button></div>
+      <p id="google-link-status" class="t-caption" role="status" aria-live="polite">Firebase Google Sign-In প্রস্তুত করা হচ্ছে…</p>
+    </section>
+
+    <form class="card stack-md" id="set-shop-form">
+      <h2 class="t-h2">দোকানের তথ্য সম্পাদনা</h2>
+      <div class="form-group"><label class="form-label">দোকানের নাম</label><input id="set-shop-name" class="input" required /></div>
+      <div class="form-group"><label class="form-label">মালিকের নাম</label><input id="set-owner-name" class="input" /></div>
+      <div class="form-group"><label class="form-label">ঠিকানা</label><input id="set-address" class="input" /></div>
+      <button type="submit" class="btn btn-primary btn-block">তথ্য সংরক্ষণ করুন</button>
+    </form>
+
+    <div class="card stack-sm">
+      <div class="t-label">টিম ও ডেমো ডাটাবেস কন্ট্রোল</div>
+      <button type="button" class="btn btn-danger btn-block" id="btn-reset-db">🔄 শুধু এই ডিভাইসের ক্যাশ রিসেট</button>
+      <button type="button" class="btn btn-outline btn-block" id="btn-logout">↪ লগআউট</button>
+    </div>
+  </main>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/settings.js"></script>
+</body>
+</html>

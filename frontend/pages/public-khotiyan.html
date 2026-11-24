@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>অনলাইন পাশবই — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main no-bottom-nav">
+    <div class="flex-between no-print">
+      <a href="./dashboard.html" class="btn btn-secondary btn-sm">← দোকানে ফিরুন</a>
+      <button type="button" class="btn btn-outline btn-sm" id="btn-pk-print">🖨️ PDF / প্রিন্ট</button>
+    </div>
+
+    <div class="card stack-md" id="pk-header-card"></div>
+
+    <div class="stack-sm">
+      <h2 class="t-h2">লেনদেন বিবরণী</h2>
+      <div class="stack-sm" id="pk-tx-list"></div>
+    </div>
+
+    <div class="card stack-sm no-print">
+      <div class="t-label">হিসাবে কোনো প্রশ্ন আছে?</div>
+      <div class="grid-2" id="pk-contact-row"></div>
+    </div>
+  </main>
+
+  <script type="module" src="../js/pages/public-khotiyan.js"></script>
+</body>
+</html>

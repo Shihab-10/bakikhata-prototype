@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>শাখা ব্যবস্থাপনা — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="flex-between">
+      <h1 class="t-h1">মাল্টি-দোকান ও শাখা</h1>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-add-br">+ নতুন শাখা</button>
+    </div>
+
+    <div class="stack-sm" id="br-list"></div>
+  </main>
+
+  <div class="modal-overlay hidden" id="add-br-modal">
+    <div class="modal-sheet">
+      <div class="flex-between">
+        <h2 class="t-h2">নতুন শাখা যোগ করুন</h2>
+        <button type="button" class="icon-btn" id="close-br-modal">✕</button>
+      </div>
+      <form id="add-br-form" class="stack-md">
+        <div class="form-group"><label class="form-label">শাখার নাম *</label><input id="nb-name" class="input" required placeholder="যেমন: রহিম স্টোর (মিরপুর)" /></div>
+        <div class="form-group"><label class="form-label">ঠিকানা</label><input id="nb-addr" class="input" placeholder="এলাকার নাম" /></div>
+        <button type="submit" class="btn btn-primary btn-block">শাখা তৈরি করুন</button>
+      </form>
+    </div>
+  </div>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/branches.js"></script>
+</body>
+</html>

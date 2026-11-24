@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>লেনদেন ইতিহাস — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+  <main class="app-main">
+    <div class="flex-between">
+      <h1 class="t-h1">লেনদেনের ইতিহাস</h1>
+      <span class="badge badge-neutral" id="history-count">০টি</span>
+    </div>
+    <div class="search-box">
+      <span class="search-icon-left">🔍</span>
+      <input id="history-search" class="input" type="search" placeholder="কাস্টমার বা বিবরণ খুঁজুন..." />
+    </div>
+    <div class="chip-row no-scrollbar" id="history-filters">
+      <button class="chip active" type="button" data-filter="all">সব</button>
+      <button class="chip chip-red" type="button" data-filter="credit_given">বাকি যোগ</button>
+      <button class="chip" type="button" data-filter="payment_received">জমা গ্রহণ</button>
+    </div>
+    <div class="stack-sm" id="history-list"></div>
+  </main>
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/history.js"></script>
+</body>
+</html>

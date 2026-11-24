@@ -1,0 +1,103 @@
+/* Bakir Khata Design Tokens — Daylight Light Mode & Night Dark Mode */
+:root {
+  --font-sans: 'Plus Jakarta Sans', 'Noto Sans Bengali', 'Hind Siliguri', system-ui, -apple-system, sans-serif;
+  --font-numeric: 'Plus Jakarta Sans', 'Noto Sans Bengali', system-ui, sans-serif;
+
+  --bg-canvas: #faf8ff;
+  --bg-surface: #ffffff;
+  --bg-surface-low: #f2f3ff;
+  --bg-surface-mid: #eaedff;
+  --bg-surface-high: #dce9ff;
+  --bg-header: rgba(250, 248, 255, 0.94);
+  --bg-backdrop: rgba(19, 27, 46, 0.58);
+
+  --text-primary: #131b2e;
+  --text-secondary: #3d4a42;
+  --text-muted: #6d7a72;
+  --text-inverse: #ffffff;
+
+  --border-subtle: #e1e6f4;
+  --border-strong: #bccac0;
+
+  --color-emerald: #006948;
+  --color-emerald-hover: #00855d;
+  --color-emerald-soft: #d7f9e9;
+  --color-emerald-text: #005137;
+  --on-emerald: #ffffff;
+
+  --color-red: #bb0112;
+  --color-red-hover: #e02928;
+  --color-red-soft: #ffdad6;
+  --color-red-text: #93000b;
+  --on-red: #ffffff;
+
+  --color-amber: #a35700;
+  --color-amber-soft: #ffdcc3;
+  --color-amber-text: #6e3900;
+  --on-amber: #ffffff;
+
+  --color-slate: #283044;
+
+  --shadow-xs: 0 1px 2px rgba(19, 27, 46, 0.05);
+  --shadow-sm: 0 2px 8px rgba(19, 27, 46, 0.06);
+  --shadow-md: 0 6px 18px rgba(19, 27, 46, 0.09);
+  --shadow-lg: 0 14px 32px rgba(19, 27, 46, 0.16);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+
+  --app-max-width: 480px;
+  --header-height: 64px;
+  --nav-height: 68px;
+}
+
+[data-theme="dark"] {
+  --bg-canvas: #0b1220;
+  --bg-surface: #131c31;
+  --bg-surface-low: #19243d;
+  --bg-surface-mid: #202d4a;
+  --bg-surface-high: #29395c;
+  --bg-header: rgba(11, 18, 32, 0.94);
+  --bg-backdrop: rgba(0, 0, 0, 0.74);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-inverse: #0b1220;
+
+  --border-subtle: #253352;
+  --border-strong: #394b73;
+
+  --color-emerald: #10b981;
+  --color-emerald-hover: #34d399;
+  --color-emerald-soft: rgba(16, 185, 129, 0.18);
+  --color-emerald-text: #6ee7b7;
+  --on-emerald: #042f20;
+
+  --color-red: #f43f5e;
+  --color-red-hover: #fb7185;
+  --color-red-soft: rgba(244, 63, 94, 0.18);
+  --color-red-text: #fda4af;
+  --on-red: #ffffff;
+
+  --color-amber: #f59e0b;
+  --color-amber-soft: rgba(245, 158, 11, 0.18);
+  --color-amber-text: #fcd34d;
+  --on-amber: #2f1500;
+
+  --color-slate: #1e293b;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.34);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.42);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.56);
+}

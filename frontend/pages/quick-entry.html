@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>দ্রুত এন্ট্রি — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/quick-entry.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="mode-switch">
+      <button type="button" class="mode-btn active-red" id="qe-credit-btn">বাকি যোগ (+৳)</button>
+      <button type="button" class="mode-btn" id="qe-paid-btn">জমা গ্রহণ (−৳)</button>
+    </div>
+
+    <div class="card flex-between">
+      <div class="form-group" style="flex:1;">
+        <label class="form-label" for="qe-customer">খরিদ্দার নির্বাচন করুন</label>
+        <select id="qe-customer" class="select"></select>
+      </div>
+      <button type="button" class="btn btn-amber btn-sm" id="qe-voice-btn" style="align-self:flex-end;">🎤 ভয়েস</button>
+    </div>
+
+    <div class="card amount-box">
+      <div class="t-caption" id="qe-amt-label">বাকির পরিমাণ</div>
+      <div class="amount-readout text-red" id="qe-display">৳০</div>
+      <div class="chip-row no-scrollbar" style="justify-content:center; margin-top:8px;">
+        <button type="button" class="chip" data-add="100">+৳১০০</button>
+        <button type="button" class="chip" data-add="500">+৳৫০০</button>
+        <button type="button" class="chip" data-add="1000">+৳১,০০০</button>
+        <button type="button" class="chip" id="qe-full-due">পুরো বাকি</button>
+      </div>
+    </div>
+
+    <div class="card stack-sm">
+      <span class="form-label">ঐচ্ছিক বিবরণ / পণ্য (বাধ্যতামূলক নয়)</span>
+      <div class="chip-row no-scrollbar" id="qe-item-pills">
+        <button type="button" class="item-pill" data-item="চাল">চাল</button>
+        <button type="button" class="item-pill" data-item="ডাল">ডাল</button>
+        <button type="button" class="item-pill" data-item="তেল">তেল</button>
+        <button type="button" class="item-pill" data-item="চিনি">চিনি</button>
+        <button type="button" class="item-pill" data-item="চা-বিস্কুট">চা-বিস্কুট</button>
+      </div>
+      <input type="text" id="qe-note" class="input" placeholder="নোট লিখুন (ঐচ্ছিক)..." />
+    </div>
+
+    <div class="card">
+      <div class="numpad-grid" id="qe-numpad">
+        <button type="button" class="numpad-key" data-key="1">১</button>
+        <button type="button" class="numpad-key" data-key="2">২</button>
+        <button type="button" class="numpad-key" data-key="3">৩</button>
+        <button type="button" class="numpad-key" data-key="4">৪</button>
+        <button type="button" class="numpad-key" data-key="5">৫</button>
+        <button type="button" class="numpad-key" data-key="6">৬</button>
+        <button type="button" class="numpad-key" data-key="7">৭</button>
+        <button type="button" class="numpad-key" data-key="8">৮</button>
+        <button type="button" class="numpad-key" data-key="9">৯</button>
+        <button type="button" class="numpad-key" data-key="00">০০</button>
+        <button type="button" class="numpad-key" data-key="0">০</button>
+        <button type="button" class="numpad-key key-back" data-key="back">⌫</button>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-danger btn-block" id="qe-submit-btn">✓ এন্ট্রি সংরক্ষণ করুন</button>
+  </main>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/quick-entry.js"></script>
+</body>
+</html>

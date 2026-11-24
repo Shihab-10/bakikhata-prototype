@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>ড্যাশবোর্ড — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/dashboard.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="voice-hero-card">
+      <div class="stack-xs">
+        <div class="t-h2" data-i18n="voice_title">মুখে বলেই এন্ট্রি করুন</div>
+        <div class="t-caption" style="color: rgba(255,255,255,0.88);" data-i18n="voice_sub">যেমন: "সামী ১০০০ টাকা বাকি করছে"</div>
+      </div>
+      <button type="button" class="voice-hero-btn" id="dash-voice-btn" data-i18n="voice_btn">🎤 বলুন</button>
+    </div>
+
+    <div class="search-box">
+      <span class="search-icon-left">🔍</span>
+      <input type="text" class="input" id="dash-search" data-i18n-placeholder="search_customer" placeholder="কাস্টমারের নাম বা এলাকা খুঁজুন..." />
+      <button type="button" class="search-mic-btn" id="dash-mic-btn" aria-label="Voice Search">🎤</button>
+    </div>
+
+    <section class="hero-due-card">
+      <div class="flex-between">
+        <span class="hero-due-sub" data-i18n="total_due">মোট বাকি পাওনা</span>
+        <span class="badge" style="background: rgba(255,255,255,0.2); color: #fff;" id="dash-cust-count">০ জন</span>
+      </div>
+      <div class="t-display" id="dash-total-due">৳০</div>
+      <div class="flex-between hero-due-sub">
+        <span id="dash-payable-note">মহাজন দেনা: ৳০</span>
+        <span id="dash-sync-note">সিঙ্কড</span>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card stack-xs">
+        <span class="t-caption" data-i18n="today_cash_in">আজকের জমা (−৳)</span>
+        <span class="t-h1 text-emerald t-num" id="dash-today-in">৳০</span>
+      </div>
+      <div class="card stack-xs">
+        <span class="t-caption" data-i18n="today_credit">আজকের বাকি (+৳)</span>
+        <span class="t-h1 text-red t-num" id="dash-today-out">৳০</span>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <a href="./quick-entry.html?type=credit_given" class="btn btn-danger" data-i18n="gave_credit">বাকি দিলাম (-৳)</a>
+      <a href="./quick-entry.html?type=payment_received" class="btn btn-primary" data-i18n="got_cash">টাকা পেলাম (+৳)</a>
+    </section>
+
+    <section class="grid-4" id="dash-shortcuts"></section>
+
+    <section class="stack-sm">
+      <div class="flex-between">
+        <h2 class="t-h2" id="dash-list-heading" data-i18n="recent_slips">সাম্প্রতিক লেনদেন</h2>
+        <a href="./customers.html" class="t-label text-emerald">সব দেখুন →</a>
+      </div>
+      <div class="stack-sm" id="dash-feed"></div>
+    </section>
+  </main>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/dashboard.js"></script>
+</body>
+</html>

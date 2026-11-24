@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>অফলাইন সিঙ্ক সেন্টার — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <h1 class="t-h1">অফলাইন ও ক্লাউড সিঙ্ক সেন্টার</h1>
+
+    <div class="card flex-between">
+      <div>
+        <div class="t-label">অফলাইন মোড পরীক্ষা করুন</div>
+        <div class="t-caption">চালু করলে নতুন এন্ট্রি লোকাল IndexedDB কিউতে জমবে</div>
+      </div>
+      <button type="button" class="switch" id="sw-offline-sim" aria-checked="false"><span class="switch-thumb"></span></button>
+    </div>
+
+    <div class="card stack-sm">
+      <div class="flex-between">
+        <h2 class="t-h2">অপেক্ষমাণ সিঙ্ক কিউ</h2>
+        <span class="badge badge-amber" id="sync-queue-badge">০ টি</span>
+      </div>
+      <div class="stack-sm" id="sync-queue-list"></div>
+      <button type="button" class="btn btn-primary btn-block" id="btn-force-sync">☁️ এখনই সিঙ্ক করুন (Force Sync)</button>
+    </div>
+
+    <div class="card stack-sm">
+      <h2 class="t-h2">সম্পূর্ণ ডাটা ব্যাকআপ</h2>
+      <p class="t-caption">আপনার ফোনে সব খরিদ্দার ও লেনদেনের JSON ব্যাকআপ সংরক্ষণ করুন।</p>
+      <button type="button" class="btn btn-secondary btn-block" id="btn-download-backup">⬇️ ব্যাকআপ ফাইল ডাউনলোড (.json)</button>
+    </div>
+  </main>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/offline-sync.js"></script>
+</body>
+</html>

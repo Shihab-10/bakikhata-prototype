@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>খরিদ্দার খতিয়ান — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/ledger.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main" style="padding-bottom: 100px;">
+    <div class="flex-between">
+      <a href="./customers.html" class="btn btn-secondary btn-sm">← খরিদ্দার তালিকা</a>
+      <a href="./public-khotiyan.html" id="link-public-passbook" class="btn btn-outline btn-sm">🔗 অনলাইন পাশবই</a>
+    </div>
+
+    <div class="card stack-md" id="ledger-profile-card"></div>
+
+    <div class="flex-between">
+      <h2 class="t-h2">দিন-ভিত্তিক হিসাব (ইতিহাস)</h2>
+      <div class="chip-row" id="ledger-type-filter">
+        <button type="button" class="chip active" data-t="all">সব</button>
+        <button type="button" class="chip chip-red" data-t="credit_given">বাকি</button>
+        <button type="button" class="chip" data-t="payment_received">জমা</button>
+      </div>
+    </div>
+
+    <div class="stack-sm" id="ledger-tx-list"></div>
+  </main>
+
+  <div class="sticky-dual-bar no-print">
+    <a href="./quick-entry.html" id="btn-give-credit" class="btn btn-danger">− বাকি দিলাম</a>
+    <a href="./quick-entry.html" id="btn-get-cash" class="btn btn-primary">+ টাকা পেলাম</a>
+  </div>
+
+  <script type="module" src="../js/pages/customer-ledger.js"></script>
+</body>
+</html>

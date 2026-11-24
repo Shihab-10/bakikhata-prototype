@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>স্টাফ কন্ট্রোল — বাকির খাতা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="app-main">
+    <div class="flex-between">
+      <h1 class="t-h1">স্টাফ ও অ্যাক্সেস কন্ট্রোল</h1>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-add-st">+ স্টাফ</button>
+    </div>
+
+    <div class="card-low t-caption">🔒 ক্যাশিয়ার ও ডেলিভারি স্টাফরা দোকানের আসল লাভ-ক্ষতি ও মহাজন দেনা দেখতে পাবে না।</div>
+
+    <div class="stack-sm" id="st-list"></div>
+  </main>
+
+  <div class="modal-overlay hidden" id="add-st-modal">
+    <div class="modal-sheet">
+      <div class="flex-between">
+        <h2 class="t-h2">নতুন স্টাফ যোগ করুন</h2>
+        <button type="button" class="icon-btn" id="close-st-modal">✕</button>
+      </div>
+      <form id="add-st-form" class="stack-md">
+        <div class="form-group"><label class="form-label">নাম *</label><input id="nst-name" class="input" required /></div>
+        <div class="form-group"><label class="form-label">মোবাইল</label><input id="nst-phone" type="tel" class="input t-num" /></div>
+        <div class="form-group">
+          <label class="form-label">পদবী (Role)</label>
+          <select id="nst-role" class="select">
+            <option value="cashier">ক্যাশিয়ার (শুধু বাকি/জমা এন্ট্রি)</option>
+            <option value="manager">ম্যানেজার (পূর্ণ হিসাব)</option>
+            <option value="delivery">সহকারী / ডেলিভারি</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">স্টাফ যোগ করুন</button>
+      </form>
+    </div>
+  </div>
+
+  <nav id="app-bottom-nav"></nav>
+  <script type="module" src="../js/pages/staff.js"></script>
+</body>
+</html>
