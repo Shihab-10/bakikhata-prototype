@@ -19,10 +19,17 @@ async function renderDashboard() {
   document.getElementById('dash-total-due').textContent = formatTaka(summary.totalReceivable);
   document.getElementById('dash-cust-count').textContent = `${localizeDigits(summary.customerCount)} ${lang === 'bn' ? 'জন খরিদ্দার' : 'Customers'}`;
   document.getElementById('dash-payable-note').textContent = `${lang === 'bn' ? 'মহাজন দেনা:' : 'Payable:'} ${formatTaka(summary.totalPayable)}`;
-  document.getElementById('dash-sync-note').textContent =
-    summary.pendingSyncCount > 0
-      ? `${localizeDigits(summary.pendingSyncCount)} ${lang === 'bn' ? 'টি অফলাইন বাকি সিঙ্ক' : 'pending sync'}`
-      : (lang === 'bn' ? 'সব হিসাব সিঙ্কড' : 'All synced');
+
+  const syncNote = document.getElementById('dash-sync-note');
+  if (config?.localOnly) {
+    syncNote.textContent = lang === 'bn'
+      ? 'এই device-এ সংরক্ষিত • Cloud Sync পরবর্তী ধাপে'
+      : 'Saved on this device • Cloud sync comes later';
+  } else if (summary.pendingSyncCount > 0) {
+    syncNote.textContent = `${localizeDigits(summary.pendingSyncCount)} ${lang === 'bn' ? 'টি অফলাইন বাকি সিঙ্ক' : 'pending sync'}`;
+  } else {
+    syncNote.textContent = lang === 'bn' ? 'সব হিসাব সিঙ্কড' : 'All synced';
+  }
 
   document.getElementById('dash-today-in').textContent = formatTaka(summary.todayCashIn);
   document.getElementById('dash-today-out').textContent = formatTaka(summary.todayCredit);
@@ -88,7 +95,7 @@ async function renderDashboard() {
     }).join('');
   }
 
-  searchInput.oninput = (e) => renderFeed(e.target.value);
+  searchInput.oninput = (event) => renderFeed(event.target.value);
   renderFeed(searchInput.value);
 
   const openVoice = () => openVoiceModal({ onSaved: renderDashboard });

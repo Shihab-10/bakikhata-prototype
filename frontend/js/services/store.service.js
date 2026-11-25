@@ -1,18 +1,44 @@
 import { dbGet, dbGetAll, dbPut, dbPutMany, dbDelete, dbClearStore, dbReplaceStores, seedIfEmpty } from '../core/db.js';
-import { apiRequest, hasSession, getCachedSession } from './api-client.js';
+import { apiRequest, hasSession, getCachedSession, isLocalSession } from './api-client.js';
 
 const makeId = () => (globalThis.crypto?.randomUUID ? crypto.randomUUID() : `local-${Date.now()}-${Math.random().toString(16).slice(2)}`);
 const isOnline = () => typeof navigator === 'undefined' || navigator.onLine;
+
 async function canUseRemote() {
-  if (!hasSession() || !isOnline()) return false;
+  if (isLocalSession() || !hasSession() || !isOnline()) return false;
   const config = await dbGet('meta', 'app_config');
-  return !config?.offlineSimulated;
+  return !config?.offlineSimulated && !config?.localOnly;
 }
+
 const toLocalCustomer = (customer) => ({ ...customer, balance: Number(customer.balance || 0), limit: Number(customer.limit || 0) });
 
 export async function initAppStore() { return getConfig(); }
 
 export async function getConfig() {
+  if (isLocalSession()) {
+    const session = getCachedSession();
+    if (session?.legacyDemo) await seedIfEmpty();
+
+    const current = await dbGet('meta', 'app_config') || {};
+    const config = {
+      ...current,
+      id: 'app_config',
+      shopId: session.shop?.id || current.shopId || '',
+      shopName: current.shopName || session.shop?.name || '',
+      ownerName: current.ownerName || session.user?.full_name || '',
+      phone: session.user?.phone || current.phone || '',
+      address: current.address ?? session.shop?.address ?? '',
+      businessType: current.businessType || session.shop?.business_type || 'grocery',
+      mode: current.mode || 'simple',
+      plan: current.plan || 'Trial',
+      offlineSimulated: false,
+      localOnly: true,
+      role: session.shop?.role || 'owner'
+    };
+    await dbPut('meta', config);
+    return config;
+  }
+
   if (hasSession()) {
     if (await canUseRemote()) {
       try {
@@ -193,7 +219,7 @@ export async function listTransactions(filter = {}) {
         }
         return all.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       }
-    } catch { /* local cache fallback */ }
+    } catch { /* offline cache fallback */ }
   }
   await seedIfEmpty();
   let list = await dbGetAll('transactions');
@@ -263,7 +289,12 @@ export async function getDashboardSummary() {
       if (tx.txType === 'credit_given') todayCredit += Number(tx.amount) || 0;
     }
   });
-  return { totalReceivable, totalPayable, todayCashIn, todayCredit, customerCount: customers.length, pendingSyncCount: (await dbGetAll('outbox')).length };
+  return {
+    totalReceivable, totalPayable, todayCashIn, todayCredit,
+    customerCount: customers.length,
+    pendingSyncCount: (await dbGetAll('outbox')).length,
+    localOnly: isLocalSession()
+  };
 }
 
 export async function logoutLocal() {

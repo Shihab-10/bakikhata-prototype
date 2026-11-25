@@ -31,26 +31,24 @@
       </div>
     </div>
 
-    <section class="card stack-sm" aria-labelledby="google-link-title">
+    <section class="card stack-sm" aria-labelledby="local-account-title">
       <div>
-        <h2 class="t-h2" id="google-link-title">Google account সংযুক্ত করুন</h2>
-        <p class="t-caption">আপনার বর্তমান merchant account-এর সাথে Firebase-verified Google sign-in যুক্ত করুন। এরপর Google দিয়েও লগইন করতে পারবেন।</p>
+        <h2 class="t-h2" id="local-account-title">Local Account Mode</h2>
+        <p class="t-caption" id="local-account-status">আপনার Account ও হিসাব এই browser ও device-এ সংরক্ষিত থাকবে। Cloud Sync পরবর্তী ধাপে চালু হবে।</p>
       </div>
-      <div id="google-link-button" class="google-signin-button"><button type="button" class="btn btn-secondary btn-block" disabled>Firebase Firebase Google Sign-In প্রস্তুত করা হচ্ছে…</button></div>
-      <p id="google-link-status" class="t-caption" role="status" aria-live="polite">Firebase Google Sign-In প্রস্তুত করা হচ্ছে…</p>
     </section>
 
     <form class="card stack-md" id="set-shop-form">
       <h2 class="t-h2">দোকানের তথ্য সম্পাদনা</h2>
-      <div class="form-group"><label class="form-label">দোকানের নাম</label><input id="set-shop-name" class="input" required /></div>
-      <div class="form-group"><label class="form-label">মালিকের নাম</label><input id="set-owner-name" class="input" /></div>
-      <div class="form-group"><label class="form-label">ঠিকানা</label><input id="set-address" class="input" /></div>
+      <div class="form-group"><label class="form-label" for="set-shop-name">দোকানের নাম</label><input id="set-shop-name" class="input" required /></div>
+      <div class="form-group"><label class="form-label" for="set-owner-name">মালিকের নাম</label><input id="set-owner-name" class="input" /></div>
+      <div class="form-group"><label class="form-label" for="set-address">ঠিকানা</label><input id="set-address" class="input" /></div>
       <button type="submit" class="btn btn-primary btn-block">তথ্য সংরক্ষণ করুন</button>
     </form>
 
     <div class="card stack-sm">
-      <div class="t-label">টিম ও ডেমো ডাটাবেস কন্ট্রোল</div>
-      <button type="button" class="btn btn-danger btn-block" id="btn-reset-db">🔄 শুধু এই ডিভাইসের ক্যাশ রিসেট</button>
+      <div class="t-label">Local Account Control</div>
+      <button type="button" class="btn btn-danger btn-block" id="btn-reset-db">🔄 শুধু এই Account-এর local হিসাব রিসেট</button>
       <button type="button" class="btn btn-outline btn-block" id="btn-logout">↪ লগআউট</button>
     </div>
   </main>

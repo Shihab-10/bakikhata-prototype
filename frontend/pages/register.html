@@ -21,18 +21,20 @@
       <div class="step-track">
         <span class="step-dot active">১</span>
         <span class="t-label">দোকানের তথ্য</span>
-        <span class="badge badge-green">নতুন দোকান অ্যাকাউন্ট</span>
+        <span class="badge badge-amber">Local Account</span>
       </div>
 
       <h1 class="t-h1">নতুন দোকান চালু করুন</h1>
+      <p class="t-caption">Account এই browser ও device-এ সংরক্ষিত থাকবে। পরে একই device-এ মোবাইল নম্বর ও password দিয়ে Sign In করতে পারবেন।</p>
+
       <form id="register-form" class="stack-md">
         <div class="form-group">
           <label class="form-label" for="reg-shop">দোকানের নাম *</label>
-          <input id="reg-shop" class="input" required placeholder="যেমন: রহিম এন্টারপ্রাইজ" value="রহিম জেনারেল স্টোর" />
+          <input id="reg-shop" class="input" required minlength="2" maxlength="180" placeholder="যেমন: রহিম এন্টারপ্রাইজ" value="" />
         </div>
         <div class="form-group">
           <label class="form-label" for="reg-owner">মালিকের নাম *</label>
-          <input id="reg-owner" class="input" required placeholder="আপনার নাম" value="আব্দুর রহিম" />
+          <input id="reg-owner" class="input" required minlength="2" maxlength="160" placeholder="আপনার নাম" value="" />
         </div>
         <div class="form-group">
           <label class="form-label" for="reg-category">ব্যবসার ধরন</label>
@@ -46,16 +48,20 @@
         </div>
         <div class="form-group">
           <label class="form-label" for="reg-phone">মোবাইল নম্বর *</label>
-          <input id="reg-phone" type="tel" class="input t-num" required maxlength="14" placeholder="01XXXXXXXXX" autocomplete="username" />
+          <input id="reg-phone" type="tel" inputmode="tel" class="input t-num" required maxlength="18" placeholder="01712345678" autocomplete="username" aria-describedby="auth-feedback" />
         </div>
         <div class="form-group">
           <label class="form-label" for="reg-password">পাসওয়ার্ড *</label>
-          <input id="reg-password" type="password" class="input" required minlength="8" placeholder="কমপক্ষে ৮ অক্ষর" autocomplete="new-password" />
+          <div class="auth-password-row">
+            <input id="reg-password" type="password" class="input" required minlength="8" maxlength="128" placeholder="কমপক্ষে ৮ অক্ষর" autocomplete="new-password" aria-describedby="auth-feedback" />
+            <button type="button" class="auth-password-toggle" id="toggle-register-password" aria-controls="reg-password" aria-pressed="false">দেখুন</button>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label" for="reg-address">ঠিকানা / বাজার</label>
-          <input id="reg-address" class="input" placeholder="যেমন: সদর বাজার, ফেনী" />
+          <input id="reg-address" class="input" maxlength="255" placeholder="যেমন: সদর বাজার, ফেনী" />
         </div>
+        <p class="auth-feedback" id="auth-feedback" role="status" aria-live="polite" hidden></p>
         <button type="submit" class="btn btn-primary btn-block" id="register-submit">দোকান চালু করুন →</button>
       </form>
     </div>

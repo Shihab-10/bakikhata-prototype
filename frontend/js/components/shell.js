@@ -11,15 +11,18 @@ export function getBasePath() {
 export async function initShell({ activeNav = 'home', pageTitle = '', showBottomNav = true, onLangChange } = {}) {
   const base = getBasePath();
   if (!hasSession()) { window.location.replace(`${base}/index.html`); return { config: null, summary: null }; }
-  if (navigator.onLine) { try { await syncNow(); } catch { /* keep local offline cache */ } }
+  if (navigator.onLine) { try { await syncNow(); } catch { /* keep local cache */ } }
   if (!hasSession()) { window.location.replace(`${base}/index.html`); return { config: null, summary: null }; }
   applyTheme(getTheme());
   const [config, summary] = await Promise.all([getConfig(), getDashboardSummary()]);
 
   const headerMount = document.getElementById('app-header');
   if (headerMount) {
+    const isLocalOnly = Boolean(config?.localOnly);
     const isOffline = Boolean(config?.offlineSimulated) || !navigator.onLine;
-    const statusLabel = isOffline ? t('offline') : t('online');
+    const statusLabel = isLocalOnly
+      ? (getLang() === 'bn' ? 'শুধু এই ডিভাইস' : 'Local only')
+      : (isOffline ? t('offline') : t('online'));
     headerMount.className = 'app-header pt-safe no-print';
     headerMount.innerHTML = `
       <div class="app-header-inner">
@@ -28,8 +31,8 @@ export async function initShell({ activeNav = 'home', pageTitle = '', showBottom
           <div class="header-titles">
             <div class="header-shop-row">
               <span class="header-shop-name">${escapeHtml(config?.shopName || t('app_name'))}</span>
-              <span class="badge ${isOffline ? 'badge-amber' : 'badge-green'}">
-                <span class="status-dot ${isOffline ? 'offline' : 'online'}"></span>
+              <span class="badge ${isLocalOnly || isOffline ? 'badge-amber' : 'badge-green'}">
+                <span class="status-dot ${isLocalOnly || isOffline ? 'offline' : 'online'}"></span>
                 ${statusLabel}
               </span>
             </div>

@@ -40,3 +40,49 @@
 .btn-google:focus-visible { outline: 3px solid rgba(66, 133, 244, .28); outline-offset: 2px; }
 .btn-google:disabled { opacity: .65; cursor: wait; }
 .btn-google svg { width: 20px; height: 20px; flex: 0 0 20px; }
+
+
+/* Local account sign-in and registration feedback */
+.auth-password-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.auth-password-row .input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.auth-password-toggle {
+  flex: 0 0 auto;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-low);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.auth-password-toggle:focus-visible {
+  outline: 3px solid rgba(16, 185, 129, .25);
+  outline-offset: 2px;
+}
+.auth-feedback {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: rgba(220, 38, 38, .08);
+  color: var(--color-red);
+  font-size: .82rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.auth-feedback[data-state="success"] {
+  background: rgba(16, 185, 129, .10);
+  color: var(--color-emerald);
+}
+.auth-feedback[hidden] {
+  display: none !important;
+}

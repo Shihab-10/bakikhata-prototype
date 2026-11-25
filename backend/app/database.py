@@ -11,23 +11,26 @@ PROJECT_ROOT = BASE_DIR.parent
 load_dotenv(BASE_DIR / ".env")
 
 IS_VERCEL = os.getenv("VERCEL", "").lower() == "1"
+CLOUD_DATABASE_ENABLED = os.getenv("BK_ENABLE_CLOUD_DATABASE", "").strip().lower() in {"1", "true", "yes"}
 
-# Vercel Marketplace PostgreSQL integrations may expose DATABASE_URL or POSTGRES_URL.
-# DATABASE_URL takes priority; POSTGRES_URL is supported as a fallback.
-RAW_DATABASE_URL = (
-    os.getenv("DATABASE_URL")
-    or os.getenv("POSTGRES_URL")
-    or os.getenv("POSTGRES_PRISMA_URL")
-    or ""
-).strip()
-
-if RAW_DATABASE_URL:
-    DATABASE_URL = RAW_DATABASE_URL
-elif IS_VERCEL:
-    # Allows build-time module import; init_db() refuses to run without persistent PostgreSQL.
+# Local-only mode is the default on Vercel. Existing DATABASE_URL/POSTGRES_URL
+# values are deliberately ignored until BK_ENABLE_CLOUD_DATABASE=1 is enabled.
+if IS_VERCEL and not CLOUD_DATABASE_ENABLED:
     DATABASE_URL = "sqlite://"
 else:
-    DATABASE_URL = "sqlite:///./data/bakikhata.db"
+    RAW_DATABASE_URL = (
+        os.getenv("DATABASE_URL")
+        or os.getenv("POSTGRES_URL")
+        or os.getenv("POSTGRES_PRISMA_URL")
+        or ""
+    ).strip()
+
+    if RAW_DATABASE_URL:
+        DATABASE_URL = RAW_DATABASE_URL
+    elif IS_VERCEL:
+        DATABASE_URL = "sqlite://"
+    else:
+        DATABASE_URL = "sqlite:///./data/bakikhata.db"
 
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+psycopg://", 1)
@@ -43,7 +46,6 @@ connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite")
 engine_options = {"pool_pre_ping": True}
 
 if DATABASE_URL.startswith("postgresql+psycopg://"):
-    # Keep a small pool for serverless function instances and use TLS settings from the provider URL.
     engine_options.update({
         "pool_size": 1,
         "max_overflow": 0,
@@ -73,10 +75,12 @@ def get_db():
         db.close()
 
 def init_db():
+    if IS_VERCEL and not CLOUD_DATABASE_ENABLED:
+        raise RuntimeError("Server database is disabled in local-only deployment.")
     if IS_VERCEL and DATABASE_URL.startswith("sqlite"):
         raise RuntimeError(
-            "BakiKhata production requires persistent PostgreSQL. "
-            "Connect Neon/Supabase and set DATABASE_URL or POSTGRES_URL in Vercel."
+            "Cloud database mode requires persistent PostgreSQL. "
+            "Set BK_ENABLE_CLOUD_DATABASE=1 and DATABASE_URL when enabling cloud mode."
         )
     from . import models  # noqa: F401 - register models before create_all
     Base.metadata.create_all(bind=engine)

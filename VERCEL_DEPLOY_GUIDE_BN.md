@@ -1,88 +1,36 @@
-# BakiKhata Vercel Deployment — বাংলা নির্দেশিকা
+# BakiKhata — Local Account Mode (PowerShell)
 
-## এই package-এ কী আছে
-- FastAPI-এর Vercel entrypoint: `index.py`
-- Root `requirements.txt` এবং `.python-version`
-- Vercel CDN-এর জন্য `public/` static assets
-- Neon/PostgreSQL production configuration
-- Firebase Authentication integration (Firebase values পরে Vercel Environment Variables-এ বসবে)
-- Production demo data seed করার PowerShell script
+এই সংস্করণে Sign Up, Sign In, Demo Login এবং হিসাব browser-এর IndexedDB-তে সংরক্ষিত হয়।
 
-## ধাপ ১ — ZIP extract
-ZIP-টি Downloads-এ extract করে `BakiKhata_Vercel_Deploy_01` folder VS Code-এ open করো। Root-এ `index.py`, `requirements.txt`, `vercel.json`, `public`, `backend` দেখতে হবে।
+## কীভাবে কাজ করবে
+- নতুন দোকান মোবাইল নম্বর ও password দিয়ে Sign Up করতে পারবে।
+- একই browser/device-এ পরে একই নম্বর ও password দিয়ে Sign In করা যাবে।
+- Password plain text হিসেবে রাখা হয় না; PBKDF2-SHA-256 hash ও unique salt রাখা হয়।
+- প্রতিটি দোকানের ledger আলাদা IndexedDB database-এ থাকে।
+- পুরোনো Demo Account ব্যবহার করা যাবে: `01712987654` / `Demo@12345`.
+- Cloud database/API default-এ বন্ধ। Existing `DATABASE_URL`/`POSTGRES_URL` values Vercel-এ থাকলেও এই mode সেগুলো ব্যবহার করে না।
 
-## ধাপ ২ — Vercel CLI login
-Project root terminal-এ চালাও:
-
-```powershell
-npx vercel@latest login
-```
-
-Browser খুললে নিজের Vercel account দিয়ে login/authorize করো। তারপর terminal-এ ফিরে আসো।
-
-## ধাপ ৩ — Vercel project তৈরি
-Project root-এ চালাও:
+## PowerShell দিয়ে preflight
+Project root-এ PowerShell খুলে চালাও:
 
 ```powershell
-npx vercel@latest
+.\scripts\prepare-vercel.ps1
 ```
 
-Prompt এলে:
-- Set up and deploy? `Y`
-- Which scope? নিজের Personal Account
-- Link to existing project? `N`
-- Project name: `bakikhata-prototype`
-- Directory: `./`
-- Override settings? `N`
-
-প্রথম deployment-এর পর Vercel একটি preview URL দেবে। PostgreSQL ও secrets configure না করা পর্যন্ত এটিকে live usable app হিসেবে share করবে না।
-
-## ধাপ ৪ — Neon PostgreSQL connect
-Vercel Dashboard → নতুন `bakikhata-prototype` project → Storage/Marketplace → Browse Marketplace → Neon → Install.
-- New Neon database create করো।
-- Region হিসেবে Vercel function region-এর কাছাকাছি region নাও; Asia user হলে Singapore region available থাকলে সেটি পছন্দ করো।
-- Production environment-এর সঙ্গে database connect করো।
-- Neon-এর pooled connection string নাও।
-
-## ধাপ ৫ — Environment Variables
-Vercel Dashboard → Project → Settings → Environment Variables.
-Production (এবং প্রয়োজন হলে Preview) environment-এ add করো:
-
-- `DATABASE_URL` = Neon pooled PostgreSQL connection string
-- `JWT_SECRET` = নিজের generated long random secret
-- `APP_ENV` = `production`
-
-Save করো। Secret values কাউকে পাঠাবে না। Environment variable বদলালে নতুন deployment প্রয়োজন।
-
-## ধাপ ৬ — Redeploy
-Vercel Dashboard → Deployments → latest deployment-এর `...` menu → Redeploy. অথবা project root থেকে:
+## Live Vercel deployment
+Project আগে Vercel CLI দিয়ে link করা থাকলে:
 
 ```powershell
 npx vercel@latest --prod
 ```
 
-## ধাপ ৭ — Demo account seed
-প্রথমে Vercel CLI দিয়ে production env pull না করে, Neon-এর pooled connection string হাতে নিয়ে local PowerShell-এ চালাও:
+Project link করা না থাকলে CLI প্রথমবার setup/link করার prompt দেখাবে। Vercel account login প্রয়োজন হলে CLI নিজেই sign-in flow খুলবে; Dashboard-এ database বা environment variable configure করার দরকার নেই।
 
-```powershell
-.\scripts\seed-production-demo.ps1
-```
+## গুরুত্বপূর্ণ সীমাবদ্ধতা
+- Account ও হিসাব শুধু যে browser/device-এ তৈরি হয়েছে সেখানেই থাকবে।
+- Browser site data clear করলে local accounts ও ledger data মুছে যেতে পারে।
+- অন্য device-এ login, cloud backup এবং multi-device sync এখনো নেই; এগুলো পরবর্তী Cloud Database ধাপে যোগ হবে।
+- Local Account Mode sensitive multi-user production authentication-এর বিকল্প নয়; এটি আপাতত single-device use-এর জন্য।
 
-Connection string prompt-এ paste করো। এটি file-এ save হবে না। Demo account:
-- Phone: `01712987654`
-- Password: `Demo@12345`
-
-## ধাপ ৮ — Verify
-নিজের Vercel URL-এর সঙ্গে:
-- `/health`
-- `/docs`
-- `/`
-খুলে দেখো। Mobile phone-এও পরীক্ষা করো।
-
-## ধাপ ৯ — Firebase Google Login (পরের ধাপ)
-Deploy URL পাওয়ার পর Firebase Console → Authentication → Settings → Authorized domains-এ domain যোগ করো (শুধু hostname, `https://` ছাড়া)। এরপর Vercel Environment Variables-এ `FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`, `FIREBASE_APP_ID` add করে redeploy করো।
-
-## নিরাপত্তা
-- `backend/.env`, database URL, JWT secret, service account key কখনো GitHub/Vercel source-এ commit করবে না।
-- Vercel production-এ SQLite ব্যবহার করবে না; persistent PostgreSQL লাগবে।
-- Demo account shared; synthetic data ছাড়া real customer data দেবে না।
+## পরে Cloud Mode চালু করতে
+পরবর্তী ধাপে persistent PostgreSQL এবং server authentication যোগ করা হবে। তখন `BK_ENABLE_CLOUD_DATABASE=1` দিয়ে cloud mode স্পষ্টভাবে enable করা হবে।
